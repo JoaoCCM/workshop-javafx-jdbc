@@ -9,16 +9,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.entities.Department;
 
 public class DepartmentFormController implements Initializable {
 
+	private Department entity;
+	
+	public void setDepartment(Department entity) {
+		this.entity = entity;
+	}
+	
 	
 	@FXML
 	private TextField txtId;
 	
 
 	@FXML
-	private TextField txtname;
+	private TextField txtName;
 	
 	@FXML
 	private Label labelErrorName;
@@ -48,7 +55,12 @@ public class DepartmentFormController implements Initializable {
 	
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldMaxLength(txtname, 30);
+		Constraints.setTextFieldMaxLength(txtName, 30);
+	}
+	
+	public void updateFormData() {
+		txtId.setText(String.valueOf(entity.getId()));//tem que converter o id em String pq o textField só mexe com string
+		txtName.setText(entity.getName());
 	}
 
 }
